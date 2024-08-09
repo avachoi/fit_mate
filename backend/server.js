@@ -5,6 +5,7 @@ import dbConnect from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
 import Users from "./models/User.js";
+import users from "./data/users.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -29,13 +30,13 @@ ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
 	next();
 });
 /////////////////////////////ROUTES////////////////////////
-app.get("/api", async (req, res) => {
+app.get("/api", (req, res) => {
 	console.log("Is API running?");
-	await res.send("API is running...");
+	res.send("API is running...");
 });
 
-app.get("/hello", async (req, res) => {
-	await res.send("Hello World!");
+app.get("/hello", (req, res) => {
+	res.send("Hello World!");
 });
 
 app.use("/api/users", userRoutes);
@@ -43,8 +44,8 @@ app.use("/api/workouts", workoutRoutes);
 
 app.get("/seed", async (req, res) => {
 	await Users.deleteMany({});
-	const users = await Users.insertMany(users);
-	res.json({ users });
+	const userList = await Users.insertMany(users);
+	res.json({ userList });
 });
 
 ////////////////////ERROR HANDLERS///////////////////////
