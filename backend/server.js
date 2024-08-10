@@ -6,6 +6,8 @@ import userRoutes from "./routes/userRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
 import Users from "./models/User.js";
 import users from "./data/users.js";
+import WorkoutPlan from "./models/WorkoutPlan.js";
+import newWorkoutPlans from "./data/workoutPlan.js";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -40,12 +42,15 @@ app.get("/hello", (req, res) => {
 });
 
 app.use("/api/users", userRoutes);
-app.use("/api/workouts", workoutRoutes);
+app.use("/api/workout", workoutRoutes);
 
 app.get("/seed", async (req, res) => {
 	await Users.deleteMany({});
 	const userList = await Users.insertMany(users);
-	res.json({ userList });
+
+	await WorkoutPlan.deleteMany({});
+	const workoutPlanList = await WorkoutPlan.insertMany(newWorkoutPlans);
+	res.json([{ userList }, { workoutPlanList }]);
 });
 
 ////////////////////ERROR HANDLERS///////////////////////

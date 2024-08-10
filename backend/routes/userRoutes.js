@@ -12,8 +12,22 @@ router.get("/", async (req, res) => {
 
 router.get("/:id", async (req, res) => {
 	console.log("User ID: ", req.params.id);
-	const user = await Users.findOne({ user_id: req.params.id });
+	const user = await Users.findOne({ _id: req.params.id });
+	await console.log("User: ", user);
 	res.json(user);
+});
+
+router.delete("/:id", async (req, res) => {
+	try {
+		const user = await Users.findOneAndDelete({ _id: req.params.id });
+		if (user) {
+			res.json({ message: "User removed" });
+		} else {
+			res.status(404).json({ message: "User not found" });
+		}
+	} catch (error) {
+		console.log("Error deleting user", error);
+	}
 });
 
 router.post("/signup", signup);

@@ -16,6 +16,7 @@ const WorkoutPlanSchema = new mongoose.Schema({
 					duration: { type: String },
 					restTime: { type: String },
 					description: { type: String },
+					done: { type: Boolean },
 				},
 			],
 		},
