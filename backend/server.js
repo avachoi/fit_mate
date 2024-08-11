@@ -2,9 +2,11 @@ import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
+import cors from "cors";
 import dbConnect from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
+import chatGptRoutes from "./routes/chatGptRoutes.js";
 import Users from "./models/User.js";
 import users from "./data/users.js";
 import WorkoutPlan from "./models/WorkoutPlan.js";
@@ -21,6 +23,7 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use(express.json());
+app.use(cors());
 
 dbConnect();
 
@@ -43,6 +46,7 @@ ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
 // API routes
 app.use("/api/users", userRoutes);
 app.use("/api/workouts", workoutRoutes);
+app.use("/api/chat", chatGptRoutes);
 
 // Seed route
 app.get("/seed", async (req, res) => {

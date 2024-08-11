@@ -1,16 +1,25 @@
 import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+
 import "./App.css";
+import WorkoutPlanGenerator from "./components/WorkoutPlanGenerator";
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<>
 			<h1>App.jsx</h1>
+			<WorkoutPlanGenerator />
 		</>
 	);
 }
 
 export default App;
+
+// {
+
+//   "weight": "120",
+//   "height": "5'4",
+//   "fitnessLevel": "easy",
+//   "preferences": [
+//     "running"
+//   ],
+// }
