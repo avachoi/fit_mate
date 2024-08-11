@@ -4,11 +4,8 @@
 	"version": "0.0.0",
 	"type": "module",
 	"scripts": {
-		"start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
-		"start:frontend": "cd frontend && npm start",
-		"start:backend": "cd backend && node server.js",
-		"dev": "vite",
-		"build": "vite build",
+		"build": "cd frontend && npm run build",
+		"start": "npm run build && node backend/server.js",
 		"lint": "eslint .",
 		"preview": "vite preview"
 	},
@@ -28,7 +25,6 @@
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@vitejs/plugin-react": "^4.3.1",
-		"concurrently": "^8.2.2",
 		"eslint": "^9.8.0",
 		"eslint-plugin-react": "^7.35.0",
 		"eslint-plugin-react-hooks": "^5.1.0-rc.0",

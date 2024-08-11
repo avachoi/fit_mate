@@ -26,9 +26,9 @@ const newWorkoutPlan = new WorkoutPlan({
 	notes: "Start with a warm-up",
 });
 
-newWorkoutPlan
-	.save()
-	.then(() => console.log("Workout plan saved successfully"))
-	.catch((error) => console.error("Error saving workout plan:", error));
+// newWorkoutPlan
+// 	.save()
+// 	.then(() => console.log("Workout plan saved successfully"))
+// 	.catch((error) => console.error("Error saving workout plan:", error));
 
 export default newWorkoutPlan;

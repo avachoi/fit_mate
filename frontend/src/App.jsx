@@ -8,7 +8,7 @@ function App() {
 
 	return (
 		<>
-			<h1>App.js</h1>
+			<h1>App.jsx</h1>
 		</>
 	);
 }

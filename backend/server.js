@@ -1,6 +1,7 @@
 import express from "express";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from "dotenv";
 import dbConnect from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
@@ -9,10 +10,15 @@ import users from "./data/users.js";
 import WorkoutPlan from "./models/WorkoutPlan.js";
 import newWorkoutPlans from "./data/workoutPlan.js";
 
+dotenv.config();
+
+const app = express();
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const app = express();
+// Serve static files from the frontend build directory
+app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use(express.json());
 
@@ -31,40 +37,35 @@ ${time.toLocaleTimeString()}: Received a ${req.method} request to ${req.url}.`
 	}
 	next();
 });
+
 /////////////////////////////ROUTES////////////////////////
-app.get("/api", (req, res) => {
-	console.log("Is API running?");
-	res.send("API is running...");
-});
 
-app.get("/hello", (req, res) => {
-	res.send("Hello World!");
-});
-
+// API routes
 app.use("/api/users", userRoutes);
-app.use("/api/workout", workoutRoutes);
+app.use("/api/workouts", workoutRoutes);
 
+// Seed route
 app.get("/seed", async (req, res) => {
-	await Users.deleteMany({});
-	const userList = await Users.insertMany(users);
-
-	await WorkoutPlan.deleteMany({});
-	const workoutPlanList = await WorkoutPlan.insertMany(newWorkoutPlans);
-	res.json([{ userList }, { workoutPlanList }]);
+	try {
+		await Users.deleteMany({});
+		await Users.insertMany(users);
+		await WorkoutPlan.deleteMany({});
+		await WorkoutPlan.insertMany(newWorkoutPlans);
+		res.send("Database seeded!");
+	} catch (error) {
+		console.error(error);
+		res.status(500).send("Error seeding database");
+	}
 });
 
-////////////////////ERROR HANDLERS///////////////////////
-// 404 error handler for undefined endpoints
+// Serve the React app for all other routes
+app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "../frontend/dist/index.html"));
+});
+
+////////////////////ERROR HANDLERS/////////////////////// // 404 error handler for undefined endpoints
 app.use((req, res, next) => {
 	res.status(404).send("Endpoint not found");
-});
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, "build")));
-
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file.
-app.get("*", (req, res) => {
-	res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 //////////////////////////////////////////////////
