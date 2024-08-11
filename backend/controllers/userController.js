@@ -15,6 +15,11 @@ export const signup = async (req, res) => {
 				password: newUser.password,
 				fitnessLevel: newUser.fitnessLevel,
 				preferences: newUser.preferences,
+				goal: newUser.goal,
+				weight: newUser.weight,
+				height: newUser.height,
+				sex: newUser.sex,
+				userPlans: newUser.userPlans,
 			});
 			console.log("CreatedUser", createdUser);
 		}

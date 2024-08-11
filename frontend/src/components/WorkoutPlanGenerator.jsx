@@ -22,7 +22,7 @@ function WorkoutPlanGenerator() {
 			setError("Failed to fetch chat response. Please try again.");
 		}
 	};
-	console.log("chatResponse", chatResponse);
+
 	return (
 		<div>
 			<h1>Workout Plan Generator</h1>

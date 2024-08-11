@@ -5,6 +5,11 @@ const users = [
 		password: "00",
 		fitnessLevel: "easy",
 		preferences: ["running"],
+		goal: "lose weight",
+		weight: 125,
+		height: 161,
+		sex: "female",
+		userPlans: [],
 	},
 	{
 		name: "David",
@@ -12,6 +17,11 @@ const users = [
 		password: "00",
 		fitnessLevel: "medium",
 		preferences: ["Zumba"],
+		goal: "gain muscle",
+		weight: 3,
+		height: 4,
+		sex: "male",
+		userPlans: [],
 	},
 	{
 		name: "lana",
@@ -19,6 +29,11 @@ const users = [
 		password: "00",
 		fitnessLevel: "hard",
 		preferences: ["boxing", "swimming"],
+		goal: "maintain",
+		weight: 7,
+		height: 5,
+		sex: "female",
+		userPlans: [],
 	},
 ];
 

@@ -6,6 +6,11 @@ const UserSchema = new mongoose.Schema({
 	password: { type: String, required: true },
 	fitnessLevel: { type: String },
 	preferences: { type: [String] },
+	goal: { type: String },
+	weight: { type: Number },
+	height: { type: Number },
+	sex: { type: String },
+	userPlans: [{ type: mongoose.Schema.Types.ObjectId, ref: "WorkoutPlan" }],
 });
 
 export default mongoose.model("User", UserSchema);

@@ -13,13 +13,3 @@ function App() {
 }
 
 export default App;
-
-// {
-
-//   "weight": "120",
-//   "height": "5'4",
-//   "fitnessLevel": "easy",
-//   "preferences": [
-//     "running"
-//   ],
-// }
