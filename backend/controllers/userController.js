@@ -5,23 +5,29 @@ import jwt from "jsonwebtoken";
 export const signup = async (req, res) => {
 	try {
 		const newUser = req.body;
-		const existedName = await Users.findOne({ name: newUser.name });
+		console.log("newUser", newUser);
+		const existedName = await Users.findOne({ email: newUser.email });
 		if (existedName) {
-			res.send("username already existed");
+			res.send("Username already existed");
+		} else if (newUser.name === newUser.password) {
+			res.send("Username and Password can not be same.");
 		} else {
+			const salt = await bcrypt.genSalt(10);
+			const hashedPassword = await bcrypt.hash(newUser.password, salt);
 			const createdUser = await Users.create({
 				name: newUser.name,
 				email: newUser.email,
-				password: newUser.password,
+				password: hashedPassword,
 				fitnessLevel: newUser.fitnessLevel,
 				preferences: newUser.preferences,
 				goal: newUser.goal,
 				weight: newUser.weight,
 				height: newUser.height,
 				sex: newUser.sex,
-				userPlans: newUser.userPlans,
+				userPlans: [],
 			});
-			console.log("CreatedUser", createdUser);
+			console.log("createdUser", createdUser);
+			res.redirect("/");
 		}
 	} catch (error) {
 		console.log("Error signing up", error);
@@ -29,6 +35,19 @@ export const signup = async (req, res) => {
 	}
 };
 
+export const getUserData = async (req, res) => {
+	try {
+		const userId = req.user.id; // Assuming authMiddleware sets req.user
+		const user = await Users.findById(userId).select("-password"); // Exclude password from the response
+		if (!user) {
+			return res.status(404).json({ message: "User not found" });
+		}
+		res.json(user);
+	} catch (error) {
+		console.log("Error fetching user data", error);
+		res.status(500).json({ message: "Server error" });
+	}
+};
 // exports.login = async (req, res) => {
 // 	// Login logic here
 // };

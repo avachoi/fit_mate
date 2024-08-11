@@ -3,6 +3,7 @@ import path from "path";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import cors from "cors";
+import bodyParser from "body-parser";
 import dbConnect from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 app.use(express.json());
 app.use(cors());
+app.use(bodyParser.json());
 
 dbConnect();
 

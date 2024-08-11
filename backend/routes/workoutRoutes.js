@@ -2,6 +2,8 @@ import express from "express";
 const router = express.Router();
 import WorkoutPlan from "../models/WorkoutPlan.js";
 
+//Routes for "/api/workouts"
+
 // Get all workout plans for a user
 router.get("/:id", async (req, res) => {
 	const plan = await WorkoutPlan.find({ _id: req.params.id });

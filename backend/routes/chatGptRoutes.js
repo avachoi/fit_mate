@@ -11,6 +11,8 @@ dotenv.config();
 const router = express.Router();
 const openai = new OpenAI();
 
+//Routes for "/api/chat"
+
 router.post("/generate", async (req, res) => {
 	const { prompt } = req.body;
 	console.log("prompt in router", prompt);
