@@ -4,6 +4,7 @@ import { getChatResponse } from "../utils/chatGptService";
 function WorkoutPlanGenerator() {
 	const [chatPrompt, setChatPrompt] = useState("");
 	const [chatResponse, setChatResponse] = useState("");
+	const [error, setError] = useState(null);
 
 	const handleChatPromptChange = (e) => {
 		setChatPrompt(e.target.value);
@@ -11,10 +12,17 @@ function WorkoutPlanGenerator() {
 
 	const handleChatSubmit = async (e) => {
 		e.preventDefault();
-		const response = await getChatResponse(chatPrompt);
-		setChatResponse(response);
+		try {
+			const response = await getChatResponse(chatPrompt);
+			const message = response.message.content;
+			console.log("message:", message);
+			setChatResponse(message);
+		} catch (err) {
+			console.error("Error fetching chat response:", err);
+			setError("Failed to fetch chat response. Please try again.");
+		}
 	};
-
+	console.log("chatResponse", chatResponse);
 	return (
 		<div>
 			<h1>Workout Plan Generator</h1>
@@ -28,6 +36,7 @@ function WorkoutPlanGenerator() {
 				/>
 				<button type="submit">Generate Chat Response</button>
 			</form>
+			{error && <p style={{ color: "red" }}>{error}</p>}
 			{chatResponse && (
 				<div>
 					<h2>Chat Response:</h2>
