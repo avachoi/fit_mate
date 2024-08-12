@@ -27,7 +27,14 @@ export const signup = async (req, res) => {
 				userPlans: [],
 			});
 			console.log("createdUser", createdUser);
-			res.redirect("/");
+			const token = jwt.sign(
+				{ userId: createdUser._id },
+				process.env.JWT_SECRET,
+				{
+					expiresIn: "3h",
+				}
+			);
+			res.status(201).json({ token, user: createdUser });
 		}
 	} catch (error) {
 		console.log("Error signing up", error);

@@ -81,20 +81,33 @@ Please generate the workout plan using the structure above and fill in the neces
 `;
 		console.log("chatInput", chatInput);
 		try {
+			let workoutPlan;
 			const completion = await openai.chat.completions.create({
 				messages: [{ role: "system", content: chatInput }],
 				model: "gpt-4o-mini",
 			});
 
-			console.log(completion.choices[0]);
-			let parsedResponse = JSON.parse(completion.choices[0].message.content);
+			const content = completion.choices[0].message.content;
+			console.log("content", content);
+			const jsonRegex = /```json\s*([\s\S]*?)\s*```/;
+			const match = content.match(jsonRegex);
+			if (match && match[1]) {
+				try {
+					workoutPlan = JSON.parse(match[1]);
+				} catch (error) {
+					console.error("Failed to parse JSON:", error);
+				}
+			} else {
+				console.log("No JSON content found in the response");
+			}
+
 			const createdPlan = await WorkoutPlan.create({
 				userId: decoded.userId,
-				planName: parsedResponse.planName,
-				goal: parsedResponse.goal,
-				durationWeeks: parsedResponse.durationWeeks,
-				frequencyPerWeek: parsedResponse.frequencyPerWeek,
-				exercises: parsedResponse.exercises.map((exercise) => ({
+				planName: workoutPlan.planName,
+				goal: workoutPlan.goal,
+				durationWeeks: workoutPlan.durationWeeks,
+				frequencyPerWeek: workoutPlan.frequencyPerWeek,
+				exercises: workoutPlan.exercises.map((exercise) => ({
 					day: exercise.day,
 					exercisesList: exercise.exercisesList.map((exerciseItem) => ({
 						name: exerciseItem.name,
@@ -105,9 +118,9 @@ Please generate the workout plan using the structure above and fill in the neces
 						description: exerciseItem.description,
 					})),
 				})),
-				notes: parsedResponse.notes,
+				notes: workoutPlan.notes,
 			});
-			res.json(completion.choices[0]);
+			res.json(workoutPlan);
 		} catch (error) {
 			if (error.response) {
 				console.log(

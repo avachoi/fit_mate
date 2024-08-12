@@ -17,7 +17,7 @@ export const getChatResponse = async (prompt) => {
 				},
 			}
 		);
-		console.log("response.data", response.data);
+		console.log("response in chatGptService", response);
 		return response.data;
 	} catch (error) {
 		console.log("Error generating chat", error);
