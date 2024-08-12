@@ -9,8 +9,9 @@ function App() {
 	return (
 		<>
 			<h1>App.jsx</h1>
-			<WorkoutPlanGenerator />
+
 			<Login />
+			<WorkoutPlanGenerator />
 		</>
 	);
 }

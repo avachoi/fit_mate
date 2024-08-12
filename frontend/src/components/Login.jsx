@@ -20,6 +20,7 @@ const Login = () => {
 			const { token, user } = await response.data;
 			// Store the token in localStorage or any state management library
 			localStorage.setItem("token", token);
+			localStorage.setItem("user", JSON.stringify(user));
 			// Redirect or update the UI as needed
 			console.log("Login successful", user);
 		} catch (err) {

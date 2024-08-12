@@ -1,11 +1,18 @@
 import axios from "axios";
 
+const token = localStorage.getItem("token");
+
 export const getChatResponse = async (prompt) => {
 	try {
 		const response = await axios.post(
 			"http://localhost:5173/api/chat/generate",
 			{ prompt },
-			{ headers: { "Content-Type": "application/json" } }
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
 		);
 		console.log("response.data", response.data);
 		return response.data;

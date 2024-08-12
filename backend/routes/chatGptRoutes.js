@@ -2,6 +2,7 @@ import express from "express";
 import axios from "axios";
 import dotenv from "dotenv";
 import OpenAI from "openai";
+import jwt from "jsonwebtoken";
 
 import Users from "../models/User.js";
 import WorkoutPlan from "../models/WorkoutPlan.js";
@@ -15,11 +16,24 @@ const openai = new OpenAI();
 
 router.post("/generate", async (req, res) => {
 	const { prompt } = req.body;
-	console.log("prompt in router", prompt);
+	console.log("req.headers.auth", req.headers.authorization);
+	const token = req.headers.authorization?.split(" ")[1];
+	if (!token) {
+		return res.status(401).json({ error: "No token provided" });
+	}
+	console.log("token in the router", token);
+	// console.log("prompt in router", prompt);
+
+	// You can now use userId to retrieve the user from the database, if needed
 
 	// find a userData
 	try {
-		const userData = await Users.findOne({ _id: "66b91b2ad9924224677487cb" });
+		const decoded = jwt.verify(token, process.env.JWT_SECRET);
+		console.log("decoded", decoded);
+		const userData = await Users.findOne({ _id: decoded.userId });
+		if (!userData) {
+			return res.status(404).json({ error: "User not found" });
+		}
 		let userInfo = {
 			userId: userData._id,
 			age: userData.age,
@@ -75,7 +89,7 @@ Please generate the workout plan using the structure above and fill in the neces
 			console.log(completion.choices[0]);
 			let parsedResponse = JSON.parse(completion.choices[0].message.content);
 			const createdPlan = await WorkoutPlan.create({
-				userId: "66b91b2ad9924224677487cb",
+				userId: decoded.userId,
 				planName: parsedResponse.planName,
 				goal: parsedResponse.goal,
 				durationWeeks: parsedResponse.durationWeeks,

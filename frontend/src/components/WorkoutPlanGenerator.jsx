@@ -16,7 +16,8 @@ function WorkoutPlanGenerator() {
 			const response = await getChatResponse(chatPrompt);
 			const message = response.message.content;
 			console.log("message:", message);
-			setChatResponse(message);
+			const parsedMessage = JSON.parse(message);
+			setChatResponse(parsedMessage);
 		} catch (err) {
 			console.error("Error fetching chat response:", err);
 			setError("Failed to fetch chat response. Please try again.");
@@ -40,7 +41,23 @@ function WorkoutPlanGenerator() {
 			{chatResponse && (
 				<div>
 					<h2>Chat Response:</h2>
-					<p>{chatResponse}</p>
+					<p>{chatResponse.planName}</p>
+					{/* Access other properties as needed */}
+					<p>Goal: {chatResponse.goal}</p>
+					<p>Duration: {chatResponse.durationWeeks} weeks</p>
+					<p>Frequency: {chatResponse.frequencyPerWeek} times per week</p>
+					{/* Render exercises */}
+					{chatResponse.exercises &&
+						chatResponse.exercises.map((exercise, index) => (
+							<div key={index}>
+								<h3>{exercise.day}</h3>
+								{exercise.exercisesList.map((ex, idx) => (
+									<p key={idx}>
+										{ex.name}: {ex.duration}
+									</p>
+								))}
+							</div>
+						))}
 				</div>
 			)}
 		</div>
