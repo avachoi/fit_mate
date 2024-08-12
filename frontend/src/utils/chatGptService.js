@@ -4,6 +4,9 @@ const token = localStorage.getItem("token");
 
 export const getChatResponse = async (prompt) => {
 	try {
+		if (!token) {
+			throw new Error("No token found in localStorage");
+		}
 		const response = await axios.post(
 			"http://localhost:5173/api/chat/generate",
 			{ prompt },
