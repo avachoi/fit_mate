@@ -1,10 +1,12 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState("");
+	const navigate = useNavigate();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -21,7 +23,7 @@ const Login = () => {
 			// Store the token in localStorage or any state management library
 			localStorage.setItem("token", token);
 			localStorage.setItem("user", JSON.stringify(user));
-			// Redirect or update the UI as needed
+			navigate("/workout-plan-generator");
 			console.log("Login successful", user);
 		} catch (err) {
 			setError("Invalid email or password");
@@ -34,21 +36,21 @@ const Login = () => {
 			<h2>Login</h2>
 			<form onSubmit={handleSubmit}>
 				<div>
-					<label>Email:</label>
 					<input
 						type="email"
 						value={email}
 						onChange={(e) => setEmail(e.target.value)}
 						required
+						placeholder="Email"
 					/>
 				</div>
 				<div>
-					<label>Password:</label>
 					<input
 						type="password"
 						value={password}
 						onChange={(e) => setPassword(e.target.value)}
 						required
+						placeholder="Password"
 					/>
 				</div>
 				{error && <p style={{ color: "red" }}>{error}</p>}

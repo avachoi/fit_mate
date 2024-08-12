@@ -118,7 +118,7 @@ function WorkoutPlanGenerator() {
 	return (
 		<div>
 			<form onSubmit={handleChatSubmit}>
-				<button type="submit">Generate Workouts</button>
+				<button type="submit">Generate Plans</button>
 			</form>
 			{error && <p style={{ color: "red" }}>{error}</p>}
 			{chatResponse && (
@@ -153,36 +153,6 @@ function WorkoutPlanGenerator() {
 							</table>
 						</div>
 					))}
-					{/* <table>
-						<tr>
-							<th>Day</th>
-							<th>Exercise</th>
-							<th>Sets</th>
-							<th>Reps</th>
-							<th>Duration</th>
-							<th>Rest Time</th>
-						</tr>
-						{chatResponse.exercises &&
-							chatResponse.exercises.map((exercise, index) => (
-								<tr key={index}>
-									<td>{exercise.day}</td>
-									<td>{exercise.exercisesList[0].name}</td>
-									<td>{exercise.exercisesList[0].sets}</td>
-									<td>{exercise.exercisesList[0].reps}</td>
-									<td>{exercise.exercisesList[0].duration}</td>
-									<td>{exercise.exercisesList[0].restTime}</td>
-								</tr>
-								// <div >
-								// 	<h3>{exercise.day}'s Session</h3>
-
-								// 	{exercise.exercisesList.map((ex, idx) => (
-								// 		<p key={idx}>
-								// 			{ex.name}: {ex.duration}
-								// 		</p>
-								// 	))}
-								// </div>
-							))}
-					</table> */}
 				</div>
 			)}
 		</div>

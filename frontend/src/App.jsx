@@ -6,6 +6,7 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import WelcomePage from "./pages/WelcomePage";
 import WorkoutPage from "./pages/WorkoutPage";
+import ProfilePage from "./pages/ProfilePage";
 import "./App.css";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/signup" element={<SignUpPage />} />
 				<Route path="/workout-plan-generator" element={<WorkoutPage />} />
+				<Route path="/profile" element={<ProfilePage />} />
 			</Routes>
 		</div>
 	);
