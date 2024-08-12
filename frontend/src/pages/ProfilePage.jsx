@@ -41,6 +41,7 @@ export default function Profile() {
 					<p>****</p>
 				</div>
 			</div>
+			<button>Log out</button>
 			<Nav />
 		</div>
 	);

@@ -120,6 +120,10 @@ Please generate the workout plan using the structure above and fill in the neces
 				})),
 				notes: workoutPlan.notes,
 			});
+			await Users.updateOne(
+				{ _id: userData._id },
+				{ $push: { userPlans: createdPlan._id } }
+			);
 			res.json(workoutPlan);
 		} catch (error) {
 			if (error.response) {

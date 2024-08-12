@@ -10,9 +10,9 @@ export default function Nav() {
 			<Link to="/workout-plan-generator">
 				<img src="plans.png" className="navIcon"></img>
 			</Link>
-			<a>
+			<Link to="/chat">
 				<img src="chatbot.png" className="navIcon"></img>
-			</a>
+			</Link>
 			<Link to="/profile">
 				<img src="user.png" className="navIcon"></img>
 			</Link>
