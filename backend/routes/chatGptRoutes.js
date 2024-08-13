@@ -13,28 +13,28 @@ dotenv.config();
 const router = express.Router();
 const openai = new OpenAI();
 
-const requestLimiter = (req, res, next) => {
-	const token = req.headers.auth.split(" ")[1];
-	const decoded = jwt.verify(token, process.env.JWT_SECRET);
-	const userId = decoded.userId;
+// const requestLimiter = (req, res, next) => {
+// 	const token = req.headers.auth.split(" ")[1];
+// 	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+// 	const userId = decoded.userId;
 
-	const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+// 	const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
 
-	if (!requestCounts[userId]) {
-		requestCounts[userId] = {};
-	}
+// 	if (!requestCounts[userId]) {
+// 		requestCounts[userId] = {};
+// 	}
 
-	if (!requestCounts[userId][currentDate]) {
-		requestCounts[userId][currentDate] = 0;
-	}
+// 	if (!requestCounts[userId][currentDate]) {
+// 		requestCounts[userId][currentDate] = 0;
+// 	}
 
-	if (requestCounts[userId][currentDate] >= requestLimit) {
-		return res.status(429).json({ error: "Request limit reached for today" });
-	}
+// 	if (requestCounts[userId][currentDate] >= requestLimit) {
+// 		return res.status(429).json({ error: "Request limit reached for today" });
+// 	}
 
-	requestCounts[userId][currentDate] += 1;
-	next();
-};
+// 	requestCounts[userId][currentDate] += 1;
+// 	next();
+// };
 
 //Routes for "/api/chat"
 
@@ -47,7 +47,6 @@ router.post("/generate", async (req, res) => {
 		return res.status(401).json({ error: "No token provided" });
 	}
 	console.log("token in the router", token);
-	// console.log("prompt in router", prompt);
 
 	// You can now use userId to retrieve the user from the database, if needed
 
@@ -166,7 +165,7 @@ Please generate the workout plan using the structure above (JSON format only) an
 
 			if (workoutPlan) {
 				createdPlan = await WorkoutPlan.create({
-					userId: decoded.userId,
+					userId: userData._id,
 					planName: workoutPlan.planName,
 					goal: workoutPlan.goal,
 					durationWeeks: workoutPlan.durationWeeks,
