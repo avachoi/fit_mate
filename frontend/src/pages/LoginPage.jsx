@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../components/login.jsx";
+import Login from "../components/Login.jsx";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
