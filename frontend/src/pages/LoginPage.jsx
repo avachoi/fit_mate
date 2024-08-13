@@ -1,5 +1,5 @@
 import React from "react";
-import Login from "../components/login";
+import Login from "../components/login.jsx";
 import { Link } from "react-router-dom";
 
 export default function LoginPage() {
@@ -8,7 +8,7 @@ export default function LoginPage() {
 			<img src="today.png"></img>
 			<Login />
 			<a>Forgot Your Password?</a>
-			<Link to="/Signup">Don't Have an Account?</Link>
+			<Link to="/Signup">Dont Have an Account?</Link>
 		</div>
 	);
 }
