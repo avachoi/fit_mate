@@ -4,6 +4,8 @@ import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import cors from "cors";
 import bodyParser from "body-parser";
+import jwt from "jsonwebtoken";
+
 import dbConnect from "./config/db.js";
 import userRoutes from "./routes/userRoutes.js";
 import workoutRoutes from "./routes/workoutRoutes.js";
@@ -27,6 +29,21 @@ const corsOptions = {
 	// origin: "http://localhost:5173",
 	origin: "https://fit-mate.onrender.com",
 	optionsSuccessStatus: 200,
+};
+
+const verifyToken = (req, res, next) => {
+	const token = req.headers.authorization?.split(" ")[1];
+	if (!token) {
+		return res.status(401).json({ error: "No token provided" });
+	}
+
+	jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
+		if (err) {
+			return res.status(401).json({ error: "Invalid token" });
+		}
+		req.userId = decoded.userId;
+		next();
+	});
 };
 
 app.use(cors(corsOptions));
