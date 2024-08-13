@@ -24,71 +24,63 @@ Authentication: JWT for secure user authentication
 Deployment: Render
 
 ## Installation
-Clone the repository:
+# Clone the repository:
 
 ```
 git clone https://github.com/avachoi/fit_mate.git
 cd fit_mate
-Install dependencies for both frontend and backend:
+```
+
+# Install dependencies for both frontend and backend:
 
 ```
 npm install
 ```
-Install dependencies for both frontend and backend:
 
-bash
-Copy code
-npm install
-cd backend
-npm install
-Set up environment variables:
+# Set up environment variables:
 
-Create a .env file in the backend directory.
-
-Set up environment variables:
-
-Create a .env file in the backend directory.
-Add the following environment variables:
-makefile
-Copy code
+- Create a .env file in the backend directory.
+- Add the following environment variables:
+```
 MONGODB_URI=your_mongodb_uri
 JWT_SECRET=your_jwt_secret
 OPENAI_API_KEY=your_openai_api_key
-Run the application:
+```
 
-Start the backend server:
-bash
-Copy code
-cd backend
-npm run dev
-Start the frontend server:
-bash
-Copy code
-npm run dev
-Access the application:
+# Build 
+```
+npm run build
+```
+# Run the application:
 
-Navigate to http://localhost:5173 in your web browser.
-Usage
+```
+npm start
+```
+# Access the application:
+
+- Navigate to http://localhost:5173 in your web browser.
+## Usage
 Sign Up: Create an account by providing your name, email, and password.
+
 Profile Setup: Answer questions about your fitness level, preferences, and goals to create your profile.
+
 Generate Workout Plan: Click "Generate Plans" to receive a personalized workout plan.
+
 Track Progress: Use the app to keep track of your workouts and progress.
-API Routes
-User Routes:
+
+## API Routes
+# User Routes:
 POST /api/users/signup: Sign up a new user.
 PUT /api/users/:id: Update user profile.
-Workout Routes:
-GET /api/workouts: Get user's workout plans.
-ChatGPT Routes:
-POST /api/chat/generate-plan: Generate a personalized workout plan using ChatGPT.
-Contributing
-If you'd like to contribute to this project, please fork the repository, create a new branch, and submit a pull request.
+# Workout Routes:
+GET /api/workouts/:id: Get user's workout plans.
+# ChatGPT Routes:
+POST /api/chat/generate: Generate a personalized workout plan using ChatGPT.
 
-License
-This project is licensed under the MIT License.
+
 
 Contact
 For any questions or feedback, please feel free to contact me:
 
 Email: avachoi12@gmail.com
-LinkedIn: Ava Jeongyeon Choi
+LinkedIn: [Ava Jeongyeon Choi](https://www.linkedin.com/in/ava-jeongyeonchoi)
