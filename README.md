@@ -78,7 +78,7 @@ Track Progress: Use the app to keep track of your workouts and progress.
 ### ChatGPT Routes:
 - POST /api/chat/generate: Generate a personalized workout plan using ChatGPT.
 
-
+Image: <a href='https://pngtree.com/freepng/fitness-coach-original-hand-drawn-cartoon_5759419.html'>png image from pngtree.com/</a>
 
 ## Contact
 For any questions or feedback, please feel free to contact me:
