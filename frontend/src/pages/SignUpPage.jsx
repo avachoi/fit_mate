@@ -1,5 +1,5 @@
 import React from "react";
-import SignUp from "../components/signup.jsx";
+import SignUp from "../components/Signup.jsx";
 import { Link } from "react-router-dom";
 
 export default function SignUpPage() {
