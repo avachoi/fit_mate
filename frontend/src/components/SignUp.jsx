@@ -54,8 +54,7 @@ export default function Signup() {
 	return (
 		<div>
 			{signupPage ? (
-				<div>
-					<h2>Sign Up</h2>
+				<div className="signup1">
 					<form
 						onSubmit={() => {
 							setSignupBtw(true);
@@ -100,9 +99,11 @@ export default function Signup() {
 					</form>
 				</div>
 			) : signupBtw ? (
-				<div>
-					<img src="user.png"></img>
-					<h3>I will ask you some questions to design a personalized plan.</h3>
+				<div className="signup2">
+					<img src="coach.png" className="img1"></img>
+					<h3 className="saying1">
+						I will ask you some questions to design a personalized plan.
+					</h3>
 					<button
 						onClick={() => {
 							setGetStartedBtw(true);
@@ -113,9 +114,9 @@ export default function Signup() {
 					</button>
 				</div>
 			) : (
-				<div>
-					<h2>Answer These Questions</h2>
-					<form onSubmit={handleSubmit}>
+				<div className="signup3">
+					<h2 className="saying1">Answer These Questions</h2>
+					<form onSubmit={handleSubmit} className="signupForm2">
 						<div>
 							<input
 								type="text"
@@ -183,7 +184,7 @@ export default function Signup() {
 							</div>
 						</div>
 						{error && <p style={{ color: "red" }}>{error}</p>}
-						<button type="submit">Sign Up</button>
+						<button type="submit">Save</button>
 					</form>
 				</div>
 			)}

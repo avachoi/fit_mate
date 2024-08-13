@@ -3,7 +3,7 @@
 	height: 844px;
 	overflow-y: auto;
 	margin: 100px 200px;
-	padding: 2rem;
+	/* padding: 2rem; */
 	padding-bottom: 0px;
 	text-align: center;
 	border: 1px solid #ccc;
@@ -32,10 +32,20 @@ tr {
 }
 .Welcome,
 .Login,
-Signup {
+.Signup {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	background-image: url("bg2.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 844px;
+}
+.Login {
+	background-image: url("bg2.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 844px;
 }
 .profileSection {
 	background-color: white;
@@ -60,4 +70,111 @@ Signup {
 }
 .profileForm form div {
 	margin-bottom: 20px;
+}
+.Welcome {
+	height: 844px;
+	background-image: url("welcome.png");
+	background-size: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.welcomeBtws {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.welcomeBtws button {
+	margin-top: 20px;
+	background-color: #e6e9f5;
+	font-weight: bold;
+}
+.Login {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.loginForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.loginForm div {
+	margin: 10px;
+}
+.loginForm input {
+	width: 200px;
+	height: 30px;
+	border-radius: 7px;
+}
+.loginForm button,
+.signup1 button {
+	width: 150px;
+	height: 30px;
+	background-color: #e6e9f5;
+	font-weight: bold;
+	padding: 5px;
+	margin: 20px;
+}
+.forget {
+	margin: 20px;
+}
+.signup1,
+signup2 {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	height: 820px;
+	justify-content: center;
+	height: 400px;
+	margin-top: 200px;
+}
+.signup1 div {
+	margin: 10px;
+}
+.signup1 input,
+.signupForm2 input {
+	width: 200px;
+	height: 30px;
+	border-radius: 7px;
+}
+.Signup {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.img1 {
+	width: 250px;
+}
+.saying1 {
+	color: white;
+	padding: 0px 20px 20px 20px;
+}
+.signup2 button {
+	margin-bottom: 30px;
+}
+.signupForm2 div {
+	margin: 10px;
+}
+.signupForm2 button {
+	width: 150px;
+	height: 30px;
+	background-color: #e6e9f5;
+	font-weight: bold;
+	padding: 5px;
+	margin: 20px;
+	background-color: #f9ac9f;
+}
+.signupForm2 button:hover {
+	background-color: #d038a0;
+	color: white;
+}
+.planPage {
+	height: 844px;
+	background-image: url("bg4.png");
+	background-repeat: no-repeat;
+	background-size: cover;
 }
