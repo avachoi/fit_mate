@@ -153,7 +153,14 @@ export default function Profile() {
 					<p>****</p>
 				</div>
 			</div>
-			<button>Log out</button>
+			<button
+				id="logoutBtw"
+				onClick={() => {
+					localStorage.removeItem("authToken");
+				}}
+			>
+				Log out
+			</button>
 		</div>
 	);
 	return (

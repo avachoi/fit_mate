@@ -3,6 +3,7 @@ import axios from "axios";
 import dotenv from "dotenv";
 import OpenAI from "openai";
 import jwt from "jsonwebtoken";
+import rateLimit from "express-rate-limit";
 
 import Users from "../models/User.js";
 import WorkoutPlan from "../models/WorkoutPlan.js";
@@ -12,9 +13,33 @@ dotenv.config();
 const router = express.Router();
 const openai = new OpenAI();
 
+const requestLimiter = (req, res, next) => {
+	const token = req.headers.auth.split(" ")[1];
+	const decoded = jwt.verify(token, process.env.JWT_SECRET);
+	const userId = decoded.userId;
+
+	const currentDate = new Date().toISOString().split("T")[0]; // Get current date in YYYY-MM-DD format
+
+	if (!requestCounts[userId]) {
+		requestCounts[userId] = {};
+	}
+
+	if (!requestCounts[userId][currentDate]) {
+		requestCounts[userId][currentDate] = 0;
+	}
+
+	if (requestCounts[userId][currentDate] >= requestLimit) {
+		return res.status(429).json({ error: "Request limit reached for today" });
+	}
+
+	requestCounts[userId][currentDate] += 1;
+	next();
+};
+
 //Routes for "/api/chat"
 
 router.post("/generate", async (req, res) => {
+	// router.post('/api/chat/generate', requestLimiter, async (req, res) => {
 	const { prompt } = req.body;
 	console.log("req.headers.auth", req.headers.authorization);
 	const token = req.headers.authorization?.split(" ")[1];
