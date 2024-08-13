@@ -28,7 +28,8 @@ export default function Profile() {
 				weight,
 			};
 			const response = await axios.put(
-				`http://localhost:5173/api/users/${user._id}`,
+				// `http://localhost:5173/api/users/${user._id}`,
+				`https://fit-mate.onrender.com/api/users/${user._id}`,
 				updateData
 			);
 			setUser(response.data);

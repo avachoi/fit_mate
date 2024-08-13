@@ -24,7 +24,8 @@ export default function Signup() {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"http://localhost:5173/api/users/signup",
+				// "http://localhost:5173/api/users/signup",
+				"https://fit-mate.onrender.com/api/users/signup",
 				{
 					name,
 					email,

@@ -12,7 +12,8 @@ const Login = () => {
 		e.preventDefault();
 		try {
 			const response = await axios.post(
-				"http://localhost:5173/api/users/login",
+				// "http://localhost:5173/api/users/login",
+				"https://fit-mate.onrender.com/api/users/login",
 				{
 					email,
 					password,
