@@ -9,8 +9,8 @@ export const getChatResponse = async (prompt) => {
 			throw new Error("No token found in localStorage");
 		}
 		const response = await axios.post(
-			`http://localhost:5173/api/chat/generate`,
-			// `https://fit-mate.onrender.com/api/chat/generate`,
+			// `http://localhost:5173/api/chat/generate`,
+			`https://fit-mate.onrender.com/api/chat/generate`,
 			{ prompt },
 			{
 				headers: {
