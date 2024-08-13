@@ -59,6 +59,7 @@ npm start
 ### Access the application:
 
 - Navigate to http://localhost:5173 in your web browser.
+  
 ## Usage
 Sign Up: Create an account by providing your name, email, and password.
 
@@ -70,12 +71,12 @@ Track Progress: Use the app to keep track of your workouts and progress.
 
 ## API Routes
 ### User Routes:
-POST /api/users/signup: Sign up a new user.
-PUT /api/users/:id: Update user profile.
+- POST /api/users/signup: Sign up a new user.
+- PUT /api/users/:id: Update user profile.
 ### Workout Routes:
-GET /api/workouts/:id: Get user's workout plans.
+- GET /api/workouts/:id: Get user's workout plans.
 ### ChatGPT Routes:
-POST /api/chat/generate: Generate a personalized workout plan using ChatGPT.
+- POST /api/chat/generate: Generate a personalized workout plan using ChatGPT.
 
 
 
