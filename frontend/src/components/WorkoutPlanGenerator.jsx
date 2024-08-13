@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { getChatResponse } from "../utils/chatGptService";
+import { getChatResponse, getExistingPlan } from "../utils/chatGptService";
 
 function WorkoutPlanGenerator() {
 	const [chatResponse, setChatResponse] = useState("");
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
 	const [error, setError] = useState(null);
 	// let chatData = {
 	// 	planName: "6-Week Weight Loss Plan",
@@ -100,6 +101,17 @@ function WorkoutPlanGenerator() {
 	// 	notes:
 	// 		"Ensure adequate hydration and maintain a balanced diet. Listen to your body and adjust the intensity as needed.",
 	// };
+	useEffect(() => {
+		// Call the API to get the existing plan
+		if (user.userPlans.length === 0) {
+			setChatResponse("");
+		} else {
+			getExistingPlan().then((response) => {
+				setChatResponse(response);
+			});
+		}
+	}, []);
+
 	const handleChatSubmit = async (e) => {
 		e.preventDefault();
 		try {
@@ -114,14 +126,14 @@ function WorkoutPlanGenerator() {
 			setError("Failed to fetch chat response. Please try again.");
 		}
 	};
-
+	console.log("chatResponse", chatResponse);
 	return (
 		<div>
 			<form onSubmit={handleChatSubmit}>
 				<button type="submit">Generate Plans</button>
 			</form>
 			{error && <p style={{ color: "red" }}>{error}</p>}
-			{chatResponse && (
+			{chatResponse.planName && (
 				<div>
 					<h2>{chatResponse.planName}</h2>
 					{/* Access other properties as needed */}

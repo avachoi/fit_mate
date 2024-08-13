@@ -82,12 +82,14 @@ Please generate the workout plan using the structure above and fill in the neces
 		console.log("chatInput", chatInput);
 		try {
 			let workoutPlan;
+			let createdPlan;
 			const completion = await openai.chat.completions.create({
 				messages: [{ role: "system", content: chatInput }],
 				model: "gpt-4o-mini",
 			});
 
 			const content = completion.choices[0].message.content;
+			console.log("content.type", typeof content);
 			console.log("content", content);
 			const jsonRegex = /```json\s*([\s\S]*?)\s*```/;
 			const match = content.match(jsonRegex);
@@ -98,28 +100,50 @@ Please generate the workout plan using the structure above and fill in the neces
 					console.error("Failed to parse JSON:", error);
 				}
 			} else {
-				console.log("No JSON content found in the response");
+				workoutPlan = JSON.parse(
+					content.slice(content.indexOf("{"), content.lastIndexOf("}") + 1)
+				);
+				if (!workoutPlan) {
+					workoutPlan = content.slice(
+						content.indexOf("{"),
+						content.lastIndexOf("}") + 1
+					);
+				} else {
+					console.log("nothing worked for workoutPlan");
+				}
 			}
 
-			const createdPlan = await WorkoutPlan.create({
-				userId: decoded.userId,
-				planName: workoutPlan.planName,
-				goal: workoutPlan.goal,
-				durationWeeks: workoutPlan.durationWeeks,
-				frequencyPerWeek: workoutPlan.frequencyPerWeek,
-				exercises: workoutPlan.exercises.map((exercise) => ({
-					day: exercise.day,
-					exercisesList: exercise.exercisesList.map((exerciseItem) => ({
-						name: exerciseItem.name,
-						sets: exerciseItem.sets,
-						reps: exerciseItem.reps,
-						duration: exerciseItem.duration,
-						restTime: exerciseItem.restTime,
-						description: exerciseItem.description,
+			// let match= content.match(/\{.*\}/);
+			// if (match) {
+			// 	workoutPlan = JSON.parse(match[0]);
+			// 	console.log('workoutPlan', workoutPlan);
+			// }else{
+			// 	workoutPlan= JSON.parse(str.slice(str.indexOf("{"), str.lastIndexOf("}") + 1))
+			// }
+
+			if (workoutPlan) {
+				createdPlan = await WorkoutPlan.create({
+					userId: decoded.userId,
+					planName: workoutPlan.planName,
+					goal: workoutPlan.goal,
+					durationWeeks: workoutPlan.durationWeeks,
+					frequencyPerWeek: workoutPlan.frequencyPerWeek,
+					exercises: workoutPlan.exercises.map((exercise) => ({
+						day: exercise.day,
+						exercisesList: exercise.exercisesList.map((exerciseItem) => ({
+							name: exerciseItem.name,
+							sets: exerciseItem.sets,
+							reps: exerciseItem.reps,
+							duration: exerciseItem.duration,
+							restTime: exerciseItem.restTime,
+							description: exerciseItem.description,
+						})),
 					})),
-				})),
-				notes: workoutPlan.notes,
-			});
+					notes: workoutPlan.notes,
+				});
+			} else {
+				console.error("Workout plan is undefined");
+			}
 			await Users.updateOne(
 				{ _id: userData._id },
 				{ $push: { userPlans: createdPlan._id } }

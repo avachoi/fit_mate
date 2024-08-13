@@ -22,11 +22,13 @@ tr {
 	background-color: grey;
 	display: flex;
 	justify-content: space-between;
+	padding-top: 4px;
+	padding-bottom: 4px;
 }
 
 .navIcon {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 }
 .Welcome,
 .Login,
@@ -47,4 +49,15 @@ Signup {
 .middleProfile {
 	margin-top: 30px;
 	margin-bottom: 30px;
+}
+.navItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.profileForm form {
+	margin-top: 200px;
+}
+.profileForm form div {
+	margin-bottom: 20px;
 }

@@ -12,16 +12,53 @@ router.get("/me", authMiddleware, getUserData);
 const jwtSecret = process.env.JWT_SECRET;
 
 //routes for "/api/users"
-router.get("/", async (req, res) => {
-	const users = await Users.find({});
-	res.json(users);
-});
+
+// router.get("/", async (req, res) => {
+// 	const users = await Users.find({});
+// 	res.json(users);
+// });
 
 router.get("/:id", async (req, res) => {
 	console.log("User ID: ", req.params.id);
 	const user = await Users.findOne({ _id: req.params.id });
 	await console.log("User: ", user);
 	res.json(user);
+});
+
+router.put("/:id", async (req, res) => {
+	try {
+		console.log("User ID in update route: ", req.params.id);
+		const { email, password, fitnessLevel, preferences, goal, weight } =
+			req.body;
+		const user = await Users.findOne({ _id: req.params.id });
+
+		user.email = email;
+		user.password = password;
+		user.fitnessLevel = fitnessLevel;
+		user.preferences = preferences;
+		user.goal = goal;
+		user.weight = weight;
+
+		const updatedUser = await user.save();
+
+		// const newUserInfo = await Users.updateOne(
+		// 	{ _id: req.params.id },
+		// 	{
+		// 		...user,
+		// 		email: email,
+		// 		password: password,
+		// 		fitnessLevel: fitnessLevel,
+		// 		preferences: preferences,
+		// 		goal: goal,
+		// 		weight: weight,
+		// 	},
+		// 	{ new: true }
+		// );
+		console.log("User updated:", user);
+		res.json(updatedUser);
+	} catch (error) {
+		console.log("Error updating user", error);
+	}
 });
 
 router.delete("/:id", async (req, res) => {

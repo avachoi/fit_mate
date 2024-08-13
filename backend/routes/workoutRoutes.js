@@ -1,13 +1,37 @@
 import express from "express";
 const router = express.Router();
 import WorkoutPlan from "../models/WorkoutPlan.js";
+import Users from "../models/User.js";
 
 //Routes for "/api/workouts"
 
-// Get all workout plans for a user
+// Get a workout plans for a user
 router.get("/:id", async (req, res) => {
-	const plan = await WorkoutPlan.find({ _id: req.params.id });
-	res.json(plan);
+	try {
+		const user = await Users.findOne({ _id: req.params.id });
+
+		if (!user) {
+			res.status(404).send("User not found");
+			return;
+		}
+		if (!user.userPlans || user.userPlans.length === 0) {
+			console.log("no plan?!", user.userPlans);
+			res.json(user.userPlans);
+		} else {
+			const lastPlanId = user.userPlans[user.userPlans.length - 1].toString();
+
+			const plan = await WorkoutPlan.findOne({ _id: lastPlanId });
+			if (!plan) {
+				console.log("no plan found!!");
+				return res.status(404).send("Workout plan not found");
+			}
+			console.log;
+			res.json(plan);
+		}
+	} catch (error) {
+		console.error("Error fetching workout plan", error);
+		res.status(500).send("Error fetching workout plan");
+	}
 });
 
 // Create a new workout plan

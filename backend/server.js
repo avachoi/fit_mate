@@ -23,8 +23,14 @@ const __dirname = path.dirname(__filename);
 // Serve static files from the frontend build directory
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
+const corsOptions = {
+	origin: "http://localhost:5173",
+	optionsSuccessStatus: 200,
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 
 dbConnect();
