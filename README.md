@@ -34,6 +34,16 @@ Install dependencies for both frontend and backend:
 ```
 npm install
 ```
+Install dependencies for both frontend and backend:
+
+bash
+Copy code
+npm install
+cd backend
+npm install
+Set up environment variables:
+
+Create a .env file in the backend directory.
 
 Set up environment variables:
 
