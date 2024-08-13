@@ -1,4 +1,4 @@
-### Fit Mate.AI
+# Fit Mate.AI
 
 ## Overview
 Fit Mate.AI is a web application designed to help users achieve their fitness goals by generating custom workout plans based on individual health info, preferences, fitness levels, and goals. The app leverages the power of ChatGPT to create personalized workout routines, ensuring that every user gets a plan tailored to their needs.
@@ -24,20 +24,20 @@ Authentication: JWT for secure user authentication
 Deployment: Render
 
 ## Installation
-# Clone the repository:
+### Clone the repository:
 
 ```
 git clone https://github.com/avachoi/fit_mate.git
 cd fit_mate
 ```
 
-# Install dependencies for both frontend and backend:
+### Install dependencies for both frontend and backend:
 
 ```
 npm install
 ```
 
-# Set up environment variables:
+### Set up environment variables:
 
 - Create a .env file in the backend directory.
 - Add the following environment variables:
@@ -47,16 +47,16 @@ JWT_SECRET=your_jwt_secret
 OPENAI_API_KEY=your_openai_api_key
 ```
 
-# Build 
+### Build 
 ```
 npm run build
 ```
-# Run the application:
+### Run the application:
 
 ```
 npm start
 ```
-# Access the application:
+### Access the application:
 
 - Navigate to http://localhost:5173 in your web browser.
 ## Usage
@@ -69,17 +69,17 @@ Generate Workout Plan: Click "Generate Plans" to receive a personalized workout 
 Track Progress: Use the app to keep track of your workouts and progress.
 
 ## API Routes
-# User Routes:
+### User Routes:
 POST /api/users/signup: Sign up a new user.
 PUT /api/users/:id: Update user profile.
-# Workout Routes:
+### Workout Routes:
 GET /api/workouts/:id: Get user's workout plans.
-# ChatGPT Routes:
+### ChatGPT Routes:
 POST /api/chat/generate: Generate a personalized workout plan using ChatGPT.
 
 
 
-Contact
+## Contact
 For any questions or feedback, please feel free to contact me:
 
 Email: avachoi12@gmail.com
