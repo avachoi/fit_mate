@@ -24,7 +24,8 @@ const __dirname = path.dirname(__filename);
 app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
 const corsOptions = {
-	origin: "http://localhost:5173",
+	// origin: "http://localhost:5173",
+	origin: "https://fit-mate.onrender.com",
 	optionsSuccessStatus: 200,
 };
 
