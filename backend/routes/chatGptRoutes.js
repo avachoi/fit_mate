@@ -77,7 +77,7 @@ Workout Plan Schema:
   notes: "Ensure adequate hydration and maintain a balanced diet."
 }
 
-Please generate the workout plan using the structure above and fill in the necessary details for the remaining days and exercises.
+Please generate the workout plan using the structure above (JSON format only) and fill in the necessary details for the remaining days and exercises.
 `;
 		console.log("chatInput", chatInput);
 		try {
@@ -91,6 +91,8 @@ Please generate the workout plan using the structure above and fill in the neces
 			const content = completion.choices[0].message.content;
 			console.log("content.type", typeof content);
 			console.log("content", content);
+
+			//second try
 			const jsonRegex = /```json\s*([\s\S]*?)\s*```/;
 			const match = content.match(jsonRegex);
 			if (match && match[1]) {
@@ -100,16 +102,30 @@ Please generate the workout plan using the structure above and fill in the neces
 					console.error("Failed to parse JSON:", error);
 				}
 			} else {
-				workoutPlan = JSON.parse(
-					content.slice(content.indexOf("{"), content.lastIndexOf("}") + 1)
-				);
-				if (!workoutPlan) {
-					workoutPlan = content.slice(
-						content.indexOf("{"),
-						content.lastIndexOf("}") + 1
-					);
+				// workoutPlan = JSON.parse(
+				// 	content.slice(content.indexOf("{"), content.lastIndexOf("}") + 1)
+				// );
+				// if (!workoutPlan) {
+				// 	workoutPlan = content.slice(
+				// 		content.indexOf("{"),
+				// 		content.lastIndexOf("}") + 1
+				// 	);
+				// } else {
+				// 	console.log("nothing worked for workoutPlan");
+				// }
+				const jsonRegex2 = /({[\s\S]*?})/;
+				const match2 = content.match(jsonRegex2);
+				console.log("match", match2);
+
+				if (match2) {
+					try {
+						workoutPlan = JSON.parse(match2[0]);
+						console.log("workoutPlan", workoutPlan);
+					} catch (error) {
+						console.error("Failed to parse JSON:", error);
+					}
 				} else {
-					console.log("nothing worked for workoutPlan");
+					console.log("No JSON content found in the response");
 				}
 			}
 
@@ -120,6 +136,8 @@ Please generate the workout plan using the structure above and fill in the neces
 			// }else{
 			// 	workoutPlan= JSON.parse(str.slice(str.indexOf("{"), str.lastIndexOf("}") + 1))
 			// }
+
+			// Improved regex to extract JSON content
 
 			if (workoutPlan) {
 				createdPlan = await WorkoutPlan.create({

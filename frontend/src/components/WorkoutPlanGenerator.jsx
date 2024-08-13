@@ -103,13 +103,14 @@ function WorkoutPlanGenerator() {
 	// };
 	useEffect(() => {
 		// Call the API to get the existing plan
-		if (user.userPlans.length === 0) {
-			setChatResponse("");
-		} else {
-			getExistingPlan().then((response) => {
-				setChatResponse(response);
-			});
-		}
+		// if (user.userPlans.length === 0) {
+		// 	setChatResponse("");
+		// }
+		// else {
+		getExistingPlan().then((response) => {
+			setChatResponse(response);
+		});
+		// }
 	}, []);
 
 	const handleChatSubmit = async (e) => {
