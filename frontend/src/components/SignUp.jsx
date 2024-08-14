@@ -105,6 +105,7 @@ export default function Signup() {
 						I will ask you some questions to design a personalized plan.
 					</h3>
 					<button
+						className="getStarted"
 						onClick={() => {
 							setGetStartedBtw(true);
 							setSignupBtw(false);
