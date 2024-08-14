@@ -37,49 +37,63 @@ function WorkoutPlanGenerator() {
 	};
 	console.log("chatResponse", chatResponse);
 	return (
-		<div className="planPage">
-			<form onSubmit={handleChatSubmit}>
-				<button type="submit" className="generator">
-					Generate Plans
-				</button>
-			</form>
-			{error && <p style={{ color: "red" }}>{error}</p>}
-			{chatResponse.planName && (
-				<div>
-					<h3 className="saying1">{chatResponse.planName}</h3>
-					{/* Access other properties as needed */}
-					<p className="saying2">Goal: {chatResponse.goal}</p>
-					<p className="saying2">
-						Frequency: {chatResponse.frequencyPerWeek} times per week
-					</p>
-					{/* Render exercises */}
-					{chatResponse.exercises.map((exercise, index) => (
-						<div key={index}>
-							<h3 className="day">{exercise.day}</h3>
-							<table className="planTable">
-								<tr className="planHead">
-									<th>Exercise</th>
-									<th>Sets</th>
-									<th>Reps</th>
-									<th>Duration</th>
-									<th>Rest</th>
-									<th>Done</th>
-								</tr>
-								{exercise.exercisesList.map((ex, idx) => (
-									<tr key={idx}>
-										<td>{ex.name}</td>
-										<td>{ex.sets}</td>
-										<td>{ex.reps}</td>
-										<td>{ex.duration}</td>
-										<td>{ex.restTime}</td>
-										<td>{ex.done ? "V" : "X"}</td>
-									</tr>
-								))}
-							</table>
+		<div>
+			<div className="planPage">
+				<form onSubmit={handleChatSubmit}>
+					<button type="submit" className="generator">
+						Generate Plans
+					</button>
+				</form>
+				{error && <p style={{ color: "red" }}>{error}</p>}
+				{chatResponse.planName ? (
+					<div>
+						<h3 className="saying1">{chatResponse.planName}</h3>
+						{/* Access other properties as needed */}
+						<p className="saying2">Goal: {chatResponse.goal}</p>
+						<p className="saying2">
+							Frequency: {chatResponse.frequencyPerWeek} times per week
+						</p>
+						{/* Render exercises */}
+						{chatResponse.exercises.map((exercise, index) => (
+							<div key={index}>
+								<h3 className="day">{exercise.day}</h3>
+								<table className="planTable">
+									<thead>
+										<tr className="planHead">
+											<th>Exercise</th>
+											<th>Sets</th>
+											<th>Reps</th>
+											<th>Duration</th>
+											<th>Rest</th>
+											<th>Done</th>
+										</tr>
+									</thead>
+									<tbody>
+										{exercise.exercisesList.map((ex, idx) => (
+											<tr key={idx}>
+												<td>{ex.name}</td>
+												<td>{ex.sets}</td>
+												<td>{ex.reps}</td>
+												<td>{ex.duration}</td>
+												<td>{ex.restTime}</td>
+												<td>{ex.done ? "V" : "X"}</td>
+											</tr>
+										))}
+									</tbody>
+								</table>
+							</div>
+						))}
+					</div>
+				) : (
+					<div className="loader-container">
+						<div className="bouncing-dots">
+							<div className="dot"></div>
+							<div className="dot"></div>
+							<div className="dot"></div>
 						</div>
-					))}
-				</div>
-			)}
+					</div>
+				)}
+			</div>
 		</div>
 	);
 }
