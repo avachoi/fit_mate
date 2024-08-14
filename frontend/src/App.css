@@ -121,7 +121,7 @@ small {
 }
 .Welcome {
 	height: 844px;
-	background-image: url("welcome.png");
+	background-image: url("welcome3.png");
 	background-size: 100%;
 	display: flex;
 	align-items: center;
@@ -134,12 +134,17 @@ small {
 	align-items: center;
 	justify-content: center;
 }
-
+.welcomeBtws .welcomeLogin {
+	background-color: white;
+}
 .welcomeBtws button {
 	margin-top: 20px;
-	background-color: #e6e9f5;
+	background-color: yellow;
 	font-weight: bold;
+	border-radius: 5px;
+	width: 200px;
 }
+
 .Login {
 	display: flex;
 	justify-content: center;

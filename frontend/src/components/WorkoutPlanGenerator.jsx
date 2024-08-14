@@ -136,7 +136,7 @@ function WorkoutPlanGenerator() {
 			{error && <p style={{ color: "red" }}>{error}</p>}
 			{chatResponse.planName && (
 				<div>
-					<h2 className="saying1">{chatResponse.planName}</h2>
+					<h3 className="saying1">{chatResponse.planName}</h3>
 					{/* Access other properties as needed */}
 					<p className="saying2">Goal: {chatResponse.goal}</p>
 					<p className="saying2">

@@ -41,7 +41,7 @@ export default function Profile() {
 	};
 	const profileForm = () => (
 		<div className="profileForm">
-			<h3>Udate Your Info</h3>
+			<h3>Update Your Info</h3>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<input

@@ -7,7 +7,7 @@ export default function WelcomePage() {
 		<div className="Welcome">
 			<div className="welcomeBtws">
 				<Link to="/login">
-					<button>Log In</button>
+					<button className="welcomeLogin">Log In</button>
 				</Link>
 				<Link to="/signup">
 					<button className="signupLink">Sign Up</button>
