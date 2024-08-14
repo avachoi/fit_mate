@@ -22,7 +22,7 @@
 	padding-top: 4px;
 	padding-bottom: 4px;
 	padding-left: 20px;
-	background-image: url("bg4.png");
+	background-image: url("/bg4.png");
 	padding-right: 20px;
 }
 small {
@@ -36,7 +36,15 @@ small {
 .signupLink {
 	background-color: yellow;
 }
-.Welcome,
+.Welcome {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-image: url("/welcome3.png");
+	background-size: cover;
+	background-repeat: no-repeat;
+	height: 844px;
+}
 .Login,
 .Signup {
 	display: flex;
@@ -48,7 +56,7 @@ small {
 	height: 844px;
 }
 .Login {
-	background-image: url("bg2.png");
+	background-image: url("/bg2.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 844px;
@@ -84,7 +92,7 @@ small {
 	align-items: center;
 }
 .profileForm {
-	background-image: url("bg4.png");
+	background-image: url("/bg4.png");
 	background-size: cover;
 	background-repeat: no-repeat;
 	height: 844px;
@@ -121,7 +129,7 @@ small {
 }
 .Welcome {
 	height: 844px;
-	background-image: url("welcome3.png");
+	background-image: url("/welcome3.png");
 	background-size: 100%;
 	display: flex;
 	align-items: center;
@@ -231,7 +239,7 @@ signup2 {
 }
 .planPage {
 	height: 844px;
-	background-image: url("bg4.png");
+	background-image: url("/bg4.png");
 	background-repeat: repeat-y;
 	background-size: cover;
 }
@@ -277,7 +285,7 @@ signup2 {
 	padding-bottom: 50px;
 }
 .profileRender {
-	background-image: url("bg4.png");
+	background-image: url("/bg4.png");
 	background-repeat: repeat-y;
 	background-size: cover;
 	color: white;
