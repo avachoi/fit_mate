@@ -25,7 +25,7 @@ function WorkoutPlanGenerator() {
 	const handleChatSubmit = async (e) => {
 		e.preventDefault();
 		try {
-			setChatResponse("");
+			setChatResponse("loading");
 			const response = await getChatResponse("");
 			setChatResponse(response);
 
@@ -46,7 +46,15 @@ function WorkoutPlanGenerator() {
 					</button>
 				</form>
 				{error && <p style={{ color: "red" }}>{error}</p>}
-				{chatResponse.planName ? (
+				{chatResponse === "loading" ? (
+					<div className="loader-container">
+						<div className="bouncing-dots">
+							<div className="dot"></div>
+							<div className="dot"></div>
+							<div className="dot"></div>
+						</div>
+					</div>
+				) : (
 					<div>
 						<h3 className="saying1">{chatResponse.planName}</h3>
 						{/* Access other properties as needed */}
@@ -84,14 +92,6 @@ function WorkoutPlanGenerator() {
 								</table>
 							</div>
 						))}
-					</div>
-				) : (
-					<div className="loader-container">
-						<div className="bouncing-dots">
-							<div className="dot"></div>
-							<div className="dot"></div>
-							<div className="dot"></div>
-						</div>
 					</div>
 				)}
 			</div>
