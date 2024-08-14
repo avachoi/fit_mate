@@ -25,11 +25,12 @@ function WorkoutPlanGenerator() {
 	const handleChatSubmit = async (e) => {
 		e.preventDefault();
 		try {
+			setChatResponse("");
 			const response = await getChatResponse("");
 			setChatResponse(response);
 
 			//for testing frontend without backend
-			setChatResponse(chatData);
+			// setChatResponse(chatData);
 		} catch (err) {
 			console.error("Error fetching chat response:", err);
 			setError("Failed to fetch chat response. Please try again.");
