@@ -41,6 +41,7 @@ export default function Profile() {
 	};
 	const profileForm = () => (
 		<div className="profileForm">
+			<h3>Udate Your Info</h3>
 			<form onSubmit={handleSubmit}>
 				<div>
 					<input
@@ -110,18 +111,22 @@ export default function Profile() {
 				</div>
 
 				{error && <p style={{ color: "red" }}>{error}</p>}
-				<button type="submit">Update Profile</button>
+				<button type="submit" className="saveBtw">
+					Save
+				</button>
 			</form>
 		</div>
 	);
 
 	const profileRender = () => (
-		<div>
-			<div className="topProfile profileSection">
-				<h3>My Profile!</h3>
-				<img src="profile.png"></img>
-				<h4>{user.name}</h4>
-				<button onClick={() => setProfileState("form")}>edit</button>
+		<div className="profileRender">
+			<div className="topProfile">
+				<h3 className="profileHeader">MY PROFILE</h3>
+				<img src="camera.png" className="camera"></img>
+				<h4 className="profileName">{user.name}</h4>
+				<h5 onClick={() => setProfileState("form")} className="editBtw">
+					edit
+				</h5>
 			</div>
 
 			<div className="middleProfile profileSection">
@@ -154,14 +159,14 @@ export default function Profile() {
 					<p>****</p>
 				</div>
 			</div>
-			<button
+			<h4
 				id="logoutBtw"
 				onClick={() => {
 					localStorage.removeItem("authToken");
 				}}
 			>
-				Log out
-			</button>
+				LOG OUT
+			</h4>
 		</div>
 	);
 	return (

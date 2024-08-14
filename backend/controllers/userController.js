@@ -29,10 +29,10 @@ export const signup = async (req, res) => {
 			console.log("createdUser", createdUser);
 			const token = jwt.sign(
 				{ userId: createdUser._id },
-				process.env.JWT_SECRET,
-				{
-					expiresIn: "3h",
-				}
+				process.env.JWT_SECRET
+				// {
+				// 	expiresIn: "3h",
+				// }
 			);
 			res.status(201).json({ token, user: createdUser });
 		}
