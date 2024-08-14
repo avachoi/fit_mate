@@ -1,4 +1,5 @@
 # Fit Mate.AI
+https://fit-mate.onrender.com/
 
 ## Overview
 Fit Mate.AI is a web application designed to help users achieve their fitness goals by generating custom workout plans based on individual health info, preferences, fitness levels, and goals. The app leverages the power of ChatGPT to create personalized workout routines, ensuring that every user gets a plan tailored to their needs.
@@ -59,6 +60,9 @@ npm start
 ### Access the application:
 
 - Navigate to http://localhost:5173 in your web browser.
+
+### Deploy
+https://fit-mate.onrender.com/
   
 ## Usage
 Sign Up: Create an account by providing your name, email, and password.
