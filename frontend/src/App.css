@@ -370,3 +370,41 @@ signup2 {
 		transform: translateY(-20px);
 	}
 }
+.chatPage {
+	min-height: 744px;
+	background-image: url("/bg4.png");
+	background-repeat: repeat-y;
+	background-size: cover;
+	height: 844px;
+	display: flex;
+	flex-direction: column;
+}
+.chat {
+	min-height: 744px;
+}
+.chat form {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	height: 744px;
+}
+.chatInput {
+	height: 550px;
+	margin: 20px;
+	border-radius: 20px;
+}
+.chat h3 {
+	color: white;
+	margin: 0px;
+	padding-top: 50px;
+}
+.chat button {
+	width: 100px;
+	height: 10px;
+	/* margin-bottom: 50px; */
+	margin-left: 150px;
+	background-color: yellow;
+	padding-bottom: 25px;
+	padding-top: 5px;
+	font-weight: bold;
+}

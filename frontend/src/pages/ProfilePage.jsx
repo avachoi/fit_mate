@@ -1,6 +1,7 @@
 import React from "react";
 import Nav from "../components/Nav.jsx";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Profile() {
 	let [user, setUser] = React.useState(
@@ -159,14 +160,16 @@ export default function Profile() {
 					<p>****</p>
 				</div>
 			</div>
-			<h4
-				id="logoutBtw"
-				onClick={() => {
-					localStorage.removeItem("authToken");
-				}}
-			>
-				LOG OUT
-			</h4>
+			<Link to="/">
+				<h4
+					id="logoutBtw"
+					onClick={() => {
+						localStorage.removeItem("authToken");
+					}}
+				>
+					LOG OUT
+				</h4>
+			</Link>
 		</div>
 	);
 	return (

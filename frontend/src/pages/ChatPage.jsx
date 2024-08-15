@@ -4,7 +4,7 @@ import Nav from "../components/Nav.jsx";
 
 export default function ChatPage() {
 	return (
-		<div>
+		<div className="chatPage">
 			<Chat />
 			<Nav />
 		</div>
