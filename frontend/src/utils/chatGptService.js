@@ -3,57 +3,9 @@ import axios from "axios";
 const token = localStorage.getItem("token");
 const user = JSON.parse(localStorage.getItem("user"));
 
-export const getChatResponse = async (prompt) => {
-	try {
-		if (!token) {
-			throw new Error("No token found in localStorage");
-		}
-		const response = await axios.post(
-			// `http://localhost:5173/api/chat/generate`,
-			`https://fit-mate.onrender.com/api/chat/generate`,
-			{ prompt },
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			}
-		);
-		console.log("response in chatGptService", response);
-		return response.data;
-	} catch (error) {
-		console.log("Error generating chat", error);
-		return { error: "Failed to fetch response from ChatGPT." };
-	}
-};
-
-export const getExistingPlan = async () => {
-	try {
-		if (!token) {
-			throw new Error("No token found in localStorage");
-		}
-		const response = await axios.get(
-			// `http://localhost:5173/api/workouts/${user._id}`,
-			`https://fit-mate.onrender.com/api/workouts/${user._id}`,
-			{
-				headers: {
-					"Content-Type": "application/json",
-					Authorization: `Bearer ${token}`,
-				},
-			}
-		);
-		console.log("response in chatGptService", response);
-		return response.data;
-	} catch (error) {
-		console.log("Error fetching existing plans", error);
-		return { error: "Failed to fetch existing plans" };
-	}
-};
-
-//hard coded chat data for testing
 export const chatData = {
 	planName: "6-Week Weight Loss Plan",
-	goal: "Lose Weight",
+	goal: "Stay active and improve endurance",
 	durationWeeks: 6,
 	frequencyPerWeek: 4,
 	exercises: [
@@ -99,12 +51,12 @@ export const chatData = {
 			day: "Friday",
 			exercisesList: [
 				{
-					name: "Running",
+					name: "Cycling",
 					sets: 1,
 					reps: null,
 					duration: "30 minutes",
 					restTime: "5 minutes",
-					description: "Easy jog to recover while still staying active.",
+					description: "Easy ride to recover while still staying active.",
 					done: false,
 				},
 				{
@@ -147,3 +99,52 @@ export const chatData = {
 	notes:
 		"Ensure adequate hydration and maintain a balanced diet. Listen to your body and adjust the intensity as needed.",
 };
+
+export const getChatResponse = async (prompt) => {
+	try {
+		if (!token) {
+			throw new Error("No token found in localStorage");
+		}
+		const response = await axios.post(
+			// `http://localhost:5173/api/chat/generate`,
+			`https://fit-mate.onrender.com/api/chat/generate`,
+			{ prompt },
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+		console.log("response in chatGptService", response);
+		return response.data;
+	} catch (error) {
+		console.log("Error generating chat. I am sending chatData. error:", error);
+		return chatData;
+	}
+};
+
+export const getExistingPlan = async () => {
+	try {
+		if (!token) {
+			throw new Error("No token found in localStorage");
+		}
+		const response = await axios.get(
+			// `http://localhost:5173/api/workouts/${user._id}`,
+			`https://fit-mate.onrender.com/api/workouts/${user._id}`,
+			{
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			}
+		);
+		console.log("response in chatGptService", response);
+		return response.data;
+	} catch (error) {
+		console.log("Error fetching existing plans", error);
+		return { error: "Failed to fetch existing plans" };
+	}
+};
+
+//hard coded chat data for testing

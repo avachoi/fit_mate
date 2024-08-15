@@ -126,7 +126,7 @@ export default function Signup() {
 								value={fitnessLevel}
 								onChange={(e) => setFitnessLevel(e.target.value)}
 								required
-								placeholder="fitness Levele"
+								placeholder="fitness Level"
 							/>
 						</div>
 						<div>
