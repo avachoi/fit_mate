@@ -170,7 +170,7 @@ export default function Profile() {
 		</div>
 	);
 	return (
-		<div>
+		<div className="profileContainer">
 			{profileState === "render" ? profileRender() : profileForm()}
 
 			<Nav />

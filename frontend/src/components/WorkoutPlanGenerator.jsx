@@ -42,7 +42,7 @@ function WorkoutPlanGenerator() {
 	};
 	console.log("chatResponse", chatResponse);
 	return (
-		<div>
+		<div className="planPageContainer">
 			<div className="planPage">
 				<form onSubmit={handleChatSubmit}>
 					<button type="submit" className="generator">

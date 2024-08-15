@@ -8,9 +8,11 @@ import WelcomePage from "./pages/WelcomePage";
 import WorkoutPage from "./pages/WorkoutPage";
 import ProfilePage from "./pages/ProfilePage";
 import ChatPage from "./pages/ChatPage";
+import Nav from "./components/Nav";
 import "./App.css";
 
 function App() {
+	// const isNotLogin = sssd;
 	return (
 		<div className="App">
 			<Routes>
@@ -21,6 +23,8 @@ function App() {
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/chat" element={<ChatPage />} />
 			</Routes>
+
+			{/* {( && <Nav />)} */}
 		</div>
 	);
 }
