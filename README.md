@@ -8,8 +8,7 @@ https://www.youtube.com/watch?v=1KGj6t7K0jU
 ![Screen Shot 2024-08-14 at 12 04 26 PM](https://github.com/user-attachments/assets/665afa2d-3bf7-469c-96ca-6ef20e6f56de)
 ![Screen Shot 2024-08-14 at 12 04 04 PM](https://github.com/user-attachments/assets/26509c42-56b3-4448-b7b4-16b9d852e56a)
 ![Screen Shot 2024-08-14 at 12 07 03 PM](https://github.com/user-attachments/assets/f3170684-f252-458f-a785-e1060d27feac)
-![Screen Shot 2024-08-14 at 12 07 46 PM](https://github.com/user-attachments/assets/8a3649ab-9514-4618-8503-c99c18d55152)
-
+<img src="![Screen Shot 2024-08-14 at 12 07 03 PM](https://github.com/user-attachments/assets/f3170684-f252-458f-a785-e1060d27feac)" width="300" />
 
 
 
