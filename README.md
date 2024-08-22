@@ -110,4 +110,5 @@ Image: <a href='https://pngtree.com/freepng/fitness-coach-original-hand-drawn-ca
 For any questions or feedback, please feel free to contact me:
 
 Email: avachoi12@gmail.com
+
 LinkedIn: [Ava Jeongyeon Choi](https://www.linkedin.com/in/ava-jeongyeonchoi)
