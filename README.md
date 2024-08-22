@@ -19,8 +19,11 @@ Fit Mate.AI is a web application designed to help users achieve their fitness go
 
 ## Features
 User Signup & Profile Management: Users can sign up and create a profile with details like fitness level, preferences, goals, weight, height, and sex.
+
 Personalized Workout Plans: The app generates custom workout plans using the ChatGPT API, tailored to the user’s input.
+
 Workout Tracking: Users can track their progress by marking exercises as done.
+
 Profile Editing: Users can update their profile information to adjust their workout plans according to changes in their fitness journey.
 
 
